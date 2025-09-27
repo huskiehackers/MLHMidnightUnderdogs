@@ -1,210 +1,284 @@
-
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Wars - Rise of Github Co-pilot</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .header-banner {
+            background-color: rgb(15, 53, 36);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 150px;
+            margin-bottom: 20px;
+        }
 
+        body {
+            background-color: #15073a;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: radial-gradient(rgb(127, 127, 83) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
 
+        .subheader {
+            background-color: lightgreen;
+            color: black;
+            text-align: center;
+            padding: 5px;
+            font-size: 18px;
+            font-weight: normal;
+            margin-top: 10px;
+            border-radius: 50px;
+        }
 
-    
-        <style>
-            .header-banner {
-                background-color: rgb(15, 53, 36);
-                color: white;
-                text-align: center;
-                padding: 10px;
-                font-size: 24px;
-                font-weight: bold;
-                
-                border-radius: 150px;
-                margin-bottom: 20px;
+        /* Button Navigation Styles */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
 
-            }
+        .nav-button {
+            background: linear-gradient(145deg, #1e3a8a, #3b82f6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            min-width: 120px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-           
+        .nav-button:hover {
+            background: linear-gradient(145deg, #3b82f6, #60a5fa);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
 
+        .nav-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-         
-            body {
-                background-color: #15073a;
-                color: white;
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 20px;
-                background-image: radial-gradient(rgb(127, 127, 83) 1px, transparent 1px);
-                background-size: 20px 20px;
+        .nav-button.active {
+            background: linear-gradient(145deg, #059669, #10b981);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Special buttons with different colors */
+        .nav-button.primary {
+            background: linear-gradient(145deg, #dc2626, #ef4444);
+        }
+
+        .nav-button.primary:hover {
+            background: linear-gradient(145deg, #ef4444, #f87171);
+        }
+
+        .nav-button.secondary {
+            background: linear-gradient(145deg, #7c3aed, #a855f7);
+        }
+
+        .nav-button.secondary:hover {
+            background: linear-gradient(145deg, #a855f7, #c084fc);
+        }
+
+        .nav-button.warning {
+            background: linear-gradient(145deg, #d97706, #f59e0b);
+        }
+
+        .nav-button.warning:hover {
+            background: linear-gradient(145deg, #f59e0b, #fbbf24);
+        }
+
+        /* Content area for button interactions */
+        .content-area {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 100px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-area h3 {
+            color: #10b981;
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        .content-area p {
+            color: #e5e7eb;
+            line-height: 1.6;
+        }
+
+        /* Game grid styles */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 75px);
+            grid-template-rows: repeat(10, 75px);
+            gap: 5px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .grid-cell {
+            width: 75px;
+            height: 75px;
+            background-color: #454545;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .grid-cell:hover {
+            background-color: #5a5a5a;
+            transform: scale(1.05);
+        }
+
+        .grid-cell.active {
+            background-color: #10b981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
             }
             
-
-            
-
-            .subheader {
-                background-color: lightgreen;
-                color: black;
-                text-align: center;
-                padding: 5px;
-                font-size: 18px;
-                font-weight: normal;
-                margin-top: 10px;
-
-                border-radius: 50px;
+            .nav-button {
+                width: 200px;
             }
-
-        </style>
-
-
-
-        <head>
-            <link rel="stylesheet" href="styles.css">
-
-
-
             
-
-
-
-        </head>
+            .game-grid {
+                grid-template-columns: repeat(5, 60px);
+                grid-template-rows: repeat(10, 60px);
+            }
+            
+            .grid-cell {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
 
 <body> 
-    
     <div class="header-banner">
         !!Space wars!!
-
         <div class="subheader">
-            Rise of Github Co-pilot This is a test
-
-
-
+            Rise of Github Co-pilot
         </div>
-
-
-
     </div>
 
+    <!-- Navigation Buttons -->
+    <div class="nav-container">
+        <button class="nav-button primary" onclick="showContent('home')">Home</button>
+        <button class="nav-button" onclick="showContent('play')">Play Game</button>
+        <button class="nav-button secondary" onclick="showContent('leaderboard')">Leaderboard</button>
+        <button class="nav-button warning" onclick="showContent('settings')">Settings</button>
+        <button class="nav-button" onclick="showContent('about')">About</button>
+    </div>
 
-    
+    <!-- Content Area -->
+    <div class="content-area" id="contentArea">
+        <h3>Welcome to Space Wars!</h3>
+        <p>Choose an option from the buttons above to get started. This is your command center for the ultimate space battle experience.</p>
+    </div>
 
+    <!-- Game Grid -->
+    <div class="game-grid" id="gameGrid">
+        <!-- Grid cells will be generated by JavaScript -->
+    </div>
 
-   
+    <script>
+        // Initialize the game grid
+        function initializeGrid() {
+            const gameGrid = document.getElementById('gameGrid');
+            gameGrid.innerHTML = '';
+            
+            for (let i = 0; i < 100; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'grid-cell';
+                cell.addEventListener('click', () => toggleCell(cell));
+                gameGrid.appendChild(cell);
+            }
+        }
 
-    <div style="display: grid; grid-template-columns: repeat(10, 75px); grid-template-rows: repeat(10, 75px); gap: 5px; justify-content: center; align-items: center;">
+        // Toggle cell state
+        function toggleCell(cell) {
+            cell.classList.toggle('active');
+        }
 
+        // Show different content based on button clicked
+        function showContent(section) {
+            const contentArea = document.getElementById('contentArea');
+            const buttons = document.querySelectorAll('.nav-button');
+            
+            // Remove active class from all buttons
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Update content based on section
+            switch(section) {
+                case 'home':
+                    contentArea.innerHTML = `
+                        <h3>Welcome to Space Wars!</h3>
+                        <p>Choose an option from the buttons above to get started. This is your command center for the ultimate space battle experience.</p>
+                    `;
+                    break;
+                case 'play':
+                    contentArea.innerHTML = `
+                        <h3>Start Your Mission</h3>
+                        <p>Click on the grid cells below to place your ships and start the battle! Each cell represents a position in space.</p>
+                    `;
+                    break;
+                case 'leaderboard':
+                    contentArea.innerHTML = `
+                        <h3>Top Commanders</h3>
+                        <p>1. Captain Neo - 15,420 points<br>
+                        2. Commander Trinity - 12,850 points<br>
+                        3. Agent Smith - 9,750 points</p>
+                    `;
+                    break;
+                case 'settings':
+                    contentArea.innerHTML = `
+                        <h3>Mission Settings</h3>
+                        <p>Configure your space battle preferences:<br>
+                        • Difficulty Level: Expert<br>
+                        • Sound Effects: Enabled<br>
+                        • Graphics Quality: High</p>
+                    `;
+                    break;
+                case 'about':
+                    contentArea.innerHTML = `
+                        <h3>About Space Wars</h3>
+                        <p>Space Wars: Rise of Github Co-pilot is an epic space battle game where you command fleets across the galaxy. Built with cutting-edge web technologies!</p>
+                    `;
+                    break;
+            }
+        }
 
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-
-
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-
-
-         <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-
-         <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-
-         <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-
-         <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-
-         <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-
-         <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-
-         <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-
-         <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-        <div style="width: 75px; height: 75px; background-color: #454545;"></div>
-       
-
-        
-
-
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGrid();
+        });
+    </script>
 </body>
-
-
 </html>
